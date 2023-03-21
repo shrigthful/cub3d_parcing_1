@@ -6,7 +6,7 @@
 /*   By: monabid <monabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 18:17:50 by monabid           #+#    #+#             */
-/*   Updated: 2023/03/21 19:23:09 by monabid          ###   ########.fr       */
+/*   Updated: 2023/03/21 20:57:53 by monabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ void	check_last_line(t_vars *vars, int index)
 	{
 		if (ft_isblock(vars->map[index][i]) == 0)
 			error_exit(vars, "map must be surronded by walls");
+		if (vars->map[index][i] == '\n')
+			error_exit(vars, "map cant have emppty lines");
 		i++;
 	}
 }
