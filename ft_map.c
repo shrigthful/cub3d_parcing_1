@@ -6,7 +6,7 @@
 /*   By: monabid <monabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 18:17:50 by monabid           #+#    #+#             */
-/*   Updated: 2023/03/21 20:57:53 by monabid          ###   ########.fr       */
+/*   Updated: 2023/03/28 12:01:47 by monabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,10 @@ void	change_spaces(t_vars *vars)
 {
 	int	i;
 	int	j;
+	int	p;
 
 	i = 0;
+	p = 0;
 	while (vars->map[i])
 	{
 		j = 0;
@@ -95,6 +97,10 @@ void	change_spaces(t_vars *vars)
 		{
 			if (ft_isspace(vars->map[i][j]) == 1)
 				vars->map[i][j] = '1';
+			if (ft_isalpha(vars->map[i][j]) == 1)
+				p++;
+			if (p == 2)
+				error_exit(vars, "map should only 1 spawning point");
 			j++;
 		}
 		i++;
