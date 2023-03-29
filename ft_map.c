@@ -6,7 +6,7 @@
 /*   By: monabid <monabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 18:17:50 by monabid           #+#    #+#             */
-/*   Updated: 2023/03/28 12:01:47 by monabid          ###   ########.fr       */
+/*   Updated: 2023/03/29 17:44:59 by monabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,13 +148,13 @@ void	check_last_line(t_vars *vars, int index)
 
 void	check_top_below(t_vars *vars, int i, int j)
 {
-	if ((int)ft_strlen(vars->map[i - 1] - 1) < j + 1)
+	if ((int)ft_strlen(vars->map[i - 1]) < j + 1)
 		error_exit(vars, "map must be surronded by walls \
 			(spaces are considered empty gaps or void)");
 	if ((int)ft_isspace(vars->map[i - 1][j]) == 1)
 		error_exit(vars, "map must be surronded by walls \
 			(spaces are considered empty gaps or void)");
-	if ((int)ft_strlen(vars->map[i + 1] - 1) < j + 1)
+	if ((int)ft_strlen(vars->map[i + 1]) < j + 1)
 		error_exit(vars, "map must be surronded by walls \
 			(spaces are considered empty gaps or void)");
 	if ((int)ft_isspace(vars->map[i + 1][j]) == 1)
@@ -166,7 +166,7 @@ void	check_line(t_vars *vars, int index)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	while (vars->map[index][i])
 	{
 		if (i == 0 && ft_isblock(vars->map[index][i]) == 0)
@@ -176,7 +176,8 @@ void	check_line(t_vars *vars, int index)
 			if (ft_isspace(vars->map[index][i - 1]) == 1)
 				error_exit(vars, "map must be surronded by walls \
 					(spaces are considered empty gaps or void)");
-			if (ft_isspace(vars->map[index][i + 1]) == 1)
+			if (ft_isspace(vars->map[index][i + 1]) == 1
+				|| (vars->map[index][i + 1] == 0))
 				error_exit(vars, "map must be surronded by walls \
 					(spaces are considered empty gaps or void)");
 			check_top_below(vars, index ,i);
