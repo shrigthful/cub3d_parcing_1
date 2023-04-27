@@ -1,6 +1,6 @@
 NAME= cub3d
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 FILES =	cub3d.c \
 	get_next_line.c \
@@ -15,7 +15,11 @@ FILES =	cub3d.c \
 
 LIBFT = ./libft/libft.a
 
+CAST_FILES = file1.c file2.c file3.c file4.c #testfile.c
+
 OBJ = $(FILES:.c=.o)
+
+CAST_OBJ = $(CAST_FILES:.c=.o)
 
 all : $(LIBFT) $(NAME) clean
 
@@ -25,11 +29,12 @@ all : $(LIBFT) $(NAME) clean
 $(LIBFT) :
 	make --directory=./libft
 
-$(NAME) : $(libft) $(OBJ)
-	$(CC) $(CFLAGS) $(MLXFLAGS)  $(LIBFT) $(OBJ) -o $(NAME)
+$(NAME) : $(libft) $(OBJ) $(CAST_OBJ)
+	$(CC) $(CFLAGS) $(MLXFLAGS)  $(LIBFT) $(OBJ) $(CAST_OBJ) -o $(NAME)
 
 clean :
 	rm -f $(OBJ)
+	rm -f $(CAST_OBJ)
 	make clean --directory=./libft
 
 fclean : clean

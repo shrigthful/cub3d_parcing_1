@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monabid <monabid@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbalahce <jbalahce@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 18:17:50 by monabid           #+#    #+#             */
-/*   Updated: 2023/03/21 15:23:24 by monabid          ###   ########.fr       */
+/*   Updated: 2023/04/02 22:27:05 by jbalahce         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,15 @@ void	check_content(t_vars *vars, char *path)
 	get_elements(vars, fd);
 }
 
+void	size_map(t_vars *vars)
+{
+	int	i;
+
+	i = 0;
+	while (vars->map[i])
+		i++;
+	vars->size_map = i;
+}
 
 void	validation(t_vars *vars, char **argv)
 {
@@ -66,4 +75,5 @@ void	validation(t_vars *vars, char **argv)
 	check_name(name);
 	free(name);
 	check_content(vars, argv[1]);
+	size_map(vars);
 }
